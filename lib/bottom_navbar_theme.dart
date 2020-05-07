@@ -1,10 +1,9 @@
-
 part of adaptive_scaffold;
 
 /// BottomNavBarTheme is a placeholder for the BottomNavigationBar theme until flutter 1.18.0-pre6 becomes mainstream
-/// 
+///
 /// /!\ No initial value is given. When used in [AdaptiveScaffold], values that are not set have been matched to the closest meaningful [Theme] property I could think of. See [_AdaptiveScaffoldState]'s small screen builder to see said values.
-/// 
+///
 /// TODO: Remove when flutter 1.18 comes around
 @immutable
 class BottomNavBarThemeData {

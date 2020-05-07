@@ -10,7 +10,7 @@ The adaptive_scaffold allows you to easily create a themable responsive scaffold
 ### 1 - Add to pubspec.yaml
 ```yml
 dependencies:
-  adaptive_scaffold: ^0.1.0
+  adaptive_scaffold: ^0.2.0
 ```
 
 ### 2 - Update dependencies

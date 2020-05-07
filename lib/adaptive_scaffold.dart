@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 part "bottom_navbar_theme.dart";
 
-
 /// Describes the elevation of the NavigationRail
 enum RailElevation {
   Backdrop,
@@ -56,10 +55,10 @@ class AdaptiveScaffoldDestination {
 ///      setState(() => currentIndex = index);
 ///   },
 /// ```
-/// 
-/// NOTE: This will be removed when flutter 1.18 reaches stable and the BottomNavigationBar can be styled directly from Material's theme. 
+///
+/// NOTE: This will be removed when flutter 1.18 reaches stable and the BottomNavigationBar can be styled directly from Material's theme.
 /// * bottomNavigationThemeData is a [BottomNavBarThemeData] applied to the bottomNavBar.
-///   Because of 
+///   Because of
 ///
 /// * activeDrawerItemDecoration is a [BoxDecoration] applied to the active drawer items. The following example adds a right side blue border to the active item:
 ///
