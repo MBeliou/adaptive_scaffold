@@ -14,6 +14,7 @@ var myTheme = ThemeData(
     space: 1, // Width of the divider
     //color: Colors.black,
   ),
+  /*
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.grey.shade200,
       showUnselectedLabels: false,
@@ -23,6 +24,7 @@ var myTheme = ThemeData(
         color: Colors.red.shade400,
         size: 24,
       )),
+      */
   navigationRailTheme: NavigationRailThemeData(
     backgroundColor: Colors.red.shade500,
     selectedIconTheme: IconThemeData(

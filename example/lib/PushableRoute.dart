@@ -1,4 +1,4 @@
-import 'package:example/main.dart';
+import 'package:adaptive_scaffold/adaptive_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class ExamplePushable extends StatelessWidget {

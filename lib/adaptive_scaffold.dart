@@ -2,6 +2,9 @@ library adaptive_scaffold;
 
 import 'package:flutter/material.dart';
 
+part "bottom_navbar_theme.dart";
+
+
 /// Describes the elevation of the NavigationRail
 enum RailElevation {
   Backdrop,
@@ -53,6 +56,10 @@ class AdaptiveScaffoldDestination {
 ///      setState(() => currentIndex = index);
 ///   },
 /// ```
+/// 
+/// NOTE: This will be removed when flutter 1.18 reaches stable and the BottomNavigationBar can be styled directly from Material's theme. 
+/// * bottomNavigationThemeData is a [BottomNavBarThemeData] applied to the bottomNavBar.
+///   Because of 
 ///
 /// * activeDrawerItemDecoration is a [BoxDecoration] applied to the active drawer items. The following example adds a right side blue border to the active item:
 ///
@@ -73,7 +80,7 @@ class AdaptiveScaffoldDestination {
 /// )
 /// ```
 ///
-/// General theming for the [NavigationRail] and the [BottomNavigationBar] is done through the Application's [ThemeData]
+/// General theming for the [NavigationRail]  is done through the Application's [ThemeData]
 class AdaptiveScaffold extends StatefulWidget {
   final AppBar appBar;
   final Widget body;
@@ -84,6 +91,7 @@ class AdaptiveScaffold extends StatefulWidget {
 
   final DrawerHeader drawerHeader;
   final ThemeData drawerThemeData;
+  final BottomNavBarThemeData bottomNavigationThemeData;
 
   final int currentIndex;
   final BoxDecoration activeDrawerItemDecoration;
@@ -94,6 +102,7 @@ class AdaptiveScaffold extends StatefulWidget {
     this.railElevation = RailElevation.Divider,
     this.drawerHeader,
     this.activeDrawerItemDecoration,
+    this.bottomNavigationThemeData,
     this.drawerThemeData,
     @required this.currentIndex,
     @required this.destinations,
@@ -175,10 +184,43 @@ class _AdaptiveScaffoldState extends State<AdaptiveScaffold> {
           : null,
       appBar: widget.appBar,
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: widget.bottomNavigationThemeData?.backgroundColor ??
+            Theme.of(context).backgroundColor,
+        elevation: widget.bottomNavigationThemeData?.elevation ?? 16.0,
+        selectedIconTheme:
+            widget.bottomNavigationThemeData?.selectedIconTheme ??
+                Theme.of(context).iconTheme,
+        unselectedIconTheme:
+            widget.bottomNavigationThemeData?.unselectedIconTheme ??
+                Theme.of(context).iconTheme.copyWith(
+                      color: Theme.of(context).unselectedWidgetColor,
+                    ),
+        selectedItemColor:
+            widget.bottomNavigationThemeData?.selectedItemColor ??
+                Theme.of(context).primaryColor,
+        unselectedItemColor:
+            widget.bottomNavigationThemeData?.unselectedItemColor ??
+                Theme.of(context).unselectedWidgetColor,
+        selectedLabelStyle:
+            widget.bottomNavigationThemeData?.selectedLabelStyle ??
+                Theme.of(context).textTheme.caption.copyWith(
+                      color: Theme.of(context).primaryColor,
+                    ),
+        unselectedLabelStyle:
+            widget.bottomNavigationThemeData?.unselectedLabelStyle ??
+                Theme.of(context).textTheme.caption.copyWith(
+                      color: Theme.of(context).unselectedWidgetColor,
+                    ),
         type: BottomNavigationBarType.fixed,
         showSelectedLabels:
+            widget.bottomNavigationThemeData?.showSelectedLabels ?? true,
+        showUnselectedLabels:
+            widget.bottomNavigationThemeData?.showUnselectedLabels ?? true,
+        /*
             BottomNavigationBarTheme.of(context)?.showSelectedLabels ??
-                true, // NOTE: Little hack around the base Material
+                true, // NOTE: Little hack around the base Material to always permit hiding the selected label
+                */
+        //
         items: [
           ...widget.destinations.where((d) => d.inDrawer == false).map(
                 (d) => BottomNavigationBarItem(
